@@ -1,0 +1,9 @@
+  <div>
+    <p>タイトル：<%= @favorite.title %></p>
+    <p>説明：<%= @favorite.body %></p>
+    <p>タグ：<%= @favorite.tag %></p>
+    <p>ユーザーネーム：<%= @favorite.user.name %></p>
+    <% if @favorite.user == current_user %>
+     <%= link_to "削除", favorite_path(@favorite), method: :delete %>
+    <% end %>
+  </div>

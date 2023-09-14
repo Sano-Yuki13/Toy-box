@@ -1,0 +1,12 @@
+<% @favorites.each do |favorite| %>
+  <div>
+    <p>タイトル:
+     <%= link_to favorite_path(favorite.id) do %>
+      <%= favorite.title %>
+     <% end %>
+    </p>
+    <p>説明：<%= favorite.body %></p>
+    <p>タグ：<%= favorite.tag %></p>
+    <p>ユーザーネーム：<%= favorite.user.name %></p>
+  </div>
+<% end %>
