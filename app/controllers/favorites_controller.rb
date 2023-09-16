@@ -11,11 +11,22 @@ class FavoritesController < ApplicationController
   end
 
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.published
   end
 
   def show
     @favorite = Favorite.find(params[:id])
+    @favorite_comment = FavoriteComment.new
+  end
+
+  def edit
+    @favorite = Favorite.find(params[:id])
+  end
+
+  def update
+    @favorite = Favorite.find(params[:id])
+    @favorite.update(favorite_params)
+    redirect_to favorite_path(@favorite.id)
   end
 
   def destroy
@@ -27,6 +38,6 @@ class FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.require(:favorite).permit(:title, :tag, :body)
+    params.require(:favorite).permit(:title, :tag, :body, :status)
   end
 end

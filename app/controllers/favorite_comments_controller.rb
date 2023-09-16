@@ -8,6 +8,11 @@ class FavoriteCommentsController < ApplicationController
     redirect_to favorite_path(favorite)
   end
 
+  def destroy
+    FavoriteComment.find(params[:id]).destroy
+    redirect_to favorite_path(params[:favorite_id])
+  end
+
   private
 
   def favorite_comment_params

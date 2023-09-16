@@ -1,9 +1,29 @@
-  <div>
-    <p>タイトル：<%= @favorite.title %></p>
-    <p>説明：<%= @favorite.body %></p>
-    <p>タグ：<%= @favorite.tag %></p>
-    <p>ユーザーネーム：<%= @favorite.user.name %></p>
-    <% if @favorite.user == current_user %>
-     <%= link_to "削除", favorite_path(@favorite), method: :delete %>
-    <% end %>
-  </div>
+      <div>
+        <p>タイトル：<%= @favorite.title %></p>
+        <p>説明：<%= @favorite.body %></p>
+        <p>タグ：<%= @favorite.tag %></p>
+        <p>ユーザーネーム：<%= @favorite.user.name %></p>
+        <% if @favorite.user == current_user %>
+         <%= link_to "削除", favorite_path(@favorite), method: :delete %>
+        <% end %>
+        <% if @favorite.user == current_user %>
+         <%= link_to "編集", edit_favorite_path(@favorite.id) %>
+        <% end %>
+      </div>
+
+      <div>
+      <p>コメント件数：<%= @favorite.favorite_comments.count %></p>
+      <% @favorite.favorite_comments.each do |favorite_comment| %>
+        <%= favorite_comment.user.name %>
+        <%= favorite_comment.created_at.strftime('%Y/%m/%d') %><%= favorite_comment.comment %>
+        <% if favorite_comment.user == current_user %>
+          <%= link_to "削除", favorite_favorite_comment_path(favorite_comment.favorite, favorite_comment), method: :delete %>
+        <% end %>
+      <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@favorite, @favorite_comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>

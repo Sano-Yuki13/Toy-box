@@ -29,7 +29,10 @@
               <%= link_to '投稿フォーム', new_favorite_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'マイページ', favorite_path(current_user.id), class: 'nav-link text-dark' %>
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿一覧', favorites_path, class: 'nav-link text-dark' %>
             </li>
             <% else %>
             <li class="nav-item">
@@ -37,6 +40,9 @@
             </li>
             <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path,  method: :post, class: 'nav-link text-dark' %>
             </li>
             <% end %>
             </ul>
