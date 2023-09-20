@@ -1,12 +1,26 @@
-<% @favorites.each do |favorite| %>
-  <div>
-    <p>タイトル:
-     <%= link_to favorite_path(favorite.id) do %>
-      <%= favorite.title %>
-     <% end %>
-    </p>
-    <p>説明：<%= favorite.body %></p>
-    <p>タグ：<%= favorite.tag %></p>
-    <p>ユーザーネーム：<%= favorite.user.name %></p>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">説明</th>
+          <th scope="col">タグ</th>
+          <th scope="col">投稿者</th>
+        </tr>
+      </thead>
+      <% @favorites.each do |favorite| %>
+      <tbody>
+        <tr>
+          <th scope="row">
+           <%= link_to favorite_path(favorite.id) do %>
+            <%= favorite.title %>
+           <% end %>
+          </th>
+          <td><%= favorite.body %></td>
+          <td><%= favorite.tag %></td>
+          <td><%= favorite.user.name %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
   </div>
-<% end %>

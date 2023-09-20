@@ -1,25 +1,41 @@
+    <div class="container">
       <div>
-        <p>タイトル：<%= @favorite.title %></p>
-        <p>説明：<%= @favorite.body %></p>
-        <p>タグ：<%= @favorite.tag %></p>
-        <p>ユーザーネーム：<%= @favorite.user.name %></p>
-        <% if @favorite.user == current_user %>
-         <%= link_to "削除", favorite_path(@favorite), method: :delete %>
-        <% end %>
-        <% if @favorite.user == current_user %>
-         <%= link_to "編集", edit_favorite_path(@favorite.id) %>
-        <% end %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">タイトル</th>
+              <th scope="col">説明</th>
+              <th scope="col">タグ</th>
+              <th scope="col">投稿者</th>
+              <th scope="col">コメント数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><%= @favorite.title %></th>
+              <td><%= @favorite.body %></td>
+              <td><%= @favorite.tag %></td>
+              <td><%= @favorite.user.name %></td>
+              <td><%= @favorite.favorite_comments.count %></td>
+              <td>
+              <% if @favorite.user == current_user %>
+               <%= link_to "削除", favorite_path(@favorite), method: :delete, class:"btn btn-danger" %>:
+               <%= link_to "編集", edit_favorite_path(@favorite.id), class:"btn btn-success" %>
+              <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div>
-      <p>コメント件数：<%= @favorite.favorite_comments.count %></p>
-      <% @favorite.favorite_comments.each do |favorite_comment| %>
-        <%= favorite_comment.user.name %>
-        <%= favorite_comment.created_at.strftime('%Y/%m/%d') %><%= favorite_comment.comment %>
-        <% if favorite_comment.user == current_user %>
-          <%= link_to "削除", favorite_favorite_comment_path(favorite_comment.favorite, favorite_comment), method: :delete %>
+        <% @favorite.favorite_comments.each do |favorite_comment| %>
+          <%= favorite_comment.user.name %>
+          <%= favorite_comment.created_at.strftime('%Y/%m/%d') %><%= favorite_comment.comment %>
+          <% if favorite_comment.user == current_user %>
+            <%= link_to "削除", favorite_favorite_comment_path(favorite_comment.favorite, favorite_comment), method: :delete, class:"btn btn-danger" %>
+          <% end %>
         <% end %>
-      <% end %>
       </div>
       <div>
         <%= form_with model: [@favorite, @favorite_comment] do |f| %>
@@ -27,3 +43,4 @@
           <%= f.submit "送信する" %>
         <% end %>
       </div>
+   </div>
