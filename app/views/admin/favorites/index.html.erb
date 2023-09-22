@@ -1,0 +1,28 @@
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">説明</th>
+          <th scope="col">タグ</th>
+          <th scope="col">投稿者</th>
+          <th scope="col">管理</th>
+        </tr>
+      </thead>
+      <% @favorites.each do |favorite| %>
+      <tbody>
+        <tr>
+          <th scope="row">
+           <%= link_to favorite_path(favorite.id) do %>
+            <%= favorite.title %>
+           <% end %>
+          </th>
+          <td><%= favorite.body %></td>
+          <td><%= favorite.tag %></td>
+          <td><%= favorite.user.name %></td>
+          <td><%= link_to "削除", admin_favorites_path, method: :delete, class:"btn btn-danger", data: {confirm: "削除しますか？"} %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>

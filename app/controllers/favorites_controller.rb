@@ -35,6 +35,10 @@ class FavoritesController < ApplicationController
     redirect_to favorites_path
   end
 
+  def search
+    @favorites = Favorite.all.search(params[:keyword])
+  end
+
   private
 
   def favorite_params
