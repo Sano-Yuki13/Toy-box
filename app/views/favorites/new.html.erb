@@ -1,5 +1,6 @@
 <div class="container">
-  <h1>投稿フォーム</h1>
+  <%= render 'devise/shared/flash' %>
+  <h1 class="py-3">投稿フォーム</h1>
   <%= form_with model: @favorite do |f| %>
     <h4>すきなもの</h4>
     <%= f.text_field :title %>

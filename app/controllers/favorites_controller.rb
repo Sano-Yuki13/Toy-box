@@ -6,8 +6,12 @@ class FavoritesController < ApplicationController
   def create
     @favorite = Favorite.new(favorite_params)
     @favorite.user_id = current_user.id
-    @favorite.save
-    redirect_to favorites_path
+    if @favorite.save
+     redirect_to favorites_path
+    else
+      flash[:alert] = "文字を入力、または選択してください"
+      render :new
+    end
   end
 
   def index

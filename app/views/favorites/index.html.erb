@@ -6,6 +6,7 @@
           <th scope="col">説明</th>
           <th scope="col">タグ</th>
           <th scope="col">投稿者</th>
+          <th scope="col">コメント数</th>
         </tr>
       </thead>
       <% @favorites.each do |favorite| %>
@@ -19,6 +20,7 @@
           <td><%= favorite.body %></td>
           <td><%= favorite.tag %></td>
           <td><%= favorite.user.name %></td>
+          <td><%= favorite.favorite_comments.count %></td>
         </tr>
       </tbody>
       <% end %>
