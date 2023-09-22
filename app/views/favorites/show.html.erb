@@ -41,20 +41,20 @@
             <th scope="col">投稿日時</th>
           </tr>
         </thead>
+        <% @favorite.favorite_comments.each do |favorite_comment| %>
         <tbody>
           <tr>
-            <% @favorite.favorite_comments.each do |favorite_comment| %>
               <th scope="row"><%= favorite_comment.user.name %></th>
               <td><%= favorite_comment.comment %></td>
               <td><%= favorite_comment.created_at.strftime('%Y/%m/%d') %></td>
               <td>
-                  <% if favorite_comment.user == current_user || admin_signed_in? %>
-                   <%= link_to "削除", favorite_favorite_comment_path(favorite_comment.favorite, favorite_comment), method: :delete, class:"btn btn-danger", data: {confirm: "削除しますか？"} %>
-                  <% end %>
+                <% if favorite_comment.user == current_user || admin_signed_in? %>
+                  <%= link_to "削除", favorite_favorite_comment_path(favorite_comment.favorite, favorite_comment), method: :delete, class:"btn btn-danger", data: {confirm: "削除しますか？"} %>
+                <% end %>
               </td>
-            <% end %>
           </tr>
         </tbody>
+        <% end %>
       </table>
 
       <div>
