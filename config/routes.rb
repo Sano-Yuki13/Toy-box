@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :favorites do
     resources :favorite_comments
+   member do
+    get :index_user
+   end
   end
-  resources :users,:admins
+  resources :users
+  resources :admins
 
   namespace :admin do
     resources :users
@@ -17,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   get "/search" => "favorites#search"
+
 end

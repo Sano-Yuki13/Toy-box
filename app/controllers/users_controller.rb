@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def search
+    @users = User.all.search(params[:keyword])
+  end
+
   private
 
   def user_params

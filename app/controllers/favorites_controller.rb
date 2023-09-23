@@ -43,6 +43,10 @@ class FavoritesController < ApplicationController
     @favorites = Favorite.all.search(params[:keyword])
   end
 
+  def index_user
+    @favorite = Favorite.where(user_id:params[:id]).where(status:true)
+  end
+
   private
 
   def favorite_params

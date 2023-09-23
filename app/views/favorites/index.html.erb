@@ -1,10 +1,10 @@
   <div class="container">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">タイトル</th>
           <th scope="col">説明</th>
-          <th scope="col">タグ</th>
+          <th scope="col">カテゴリ</th>
           <th scope="col">投稿者</th>
           <th scope="col">コメント数</th>
         </tr>
@@ -19,7 +19,11 @@
           </th>
           <td><%= favorite.body %></td>
           <td><%= favorite.tag %></td>
-          <td><%= favorite.user.name %></td>
+          <td>
+            <%= link_to index_user_favorite_path(favorite.user_id) do %>
+             <%= favorite.user.name %>
+            <% end %>
+          </td>
           <td><%= favorite.favorite_comments.count %></td>
         </tr>
       </tbody>
