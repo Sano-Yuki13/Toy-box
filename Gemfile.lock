@@ -96,6 +96,7 @@ GEM
     ffi (1.15.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    honoka-rails (3.3.7)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -246,6 +247,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  honoka-rails (~> 3.3, >= 3.3.7)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2
