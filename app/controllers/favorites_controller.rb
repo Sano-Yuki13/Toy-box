@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
   end
 
   def index
-    @favorites = Favorite.published
+    @favorites = Favorite.published.page(params[:page]).per(10)
   end
 
   def show
@@ -44,7 +44,7 @@ class FavoritesController < ApplicationController
   end
 
   def index_user
-    @favorite = Favorite.where(user_id:params[:id]).where(status:true)
+    @favorite = Favorite.where(user_id:params[:id]).where(status:true).page(params[:page]).per(10)
   end
 
   private

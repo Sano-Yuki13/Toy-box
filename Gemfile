@@ -69,3 +69,5 @@ gem "net-imap"
 gem 'honoka-rails', '~> 3.3', '>= 3.3.7'
 
 gem 'devise-i18n'
+
+gem 'kaminari'
