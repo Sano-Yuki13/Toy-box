@@ -10,8 +10,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+     redirect_to user_path(@user.id)
+    else
+    flash[:alert] = "文字を入力、または選択してください"
+     render :edit
+    end
   end
 
   def search

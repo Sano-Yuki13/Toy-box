@@ -1,6 +1,6 @@
 class Admin::FavoritesController < ApplicationController
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.all.page(params[:page]).per(10)
   end
 
   def destroy

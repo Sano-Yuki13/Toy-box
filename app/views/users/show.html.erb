@@ -1,6 +1,6 @@
 <div class="container">
  <div class="row">
-  <h3 class="py-3 col-8"><%= @user.name %></h3>
+  <h3 class="py-3 col-8 text-center"><%= @user.name %>さん</h3>
   <% if @user == current_user %>
    <p class="py-3 col-4"><%= link_to "プロフィール編集", edit_user_path, class:"btn btn-success" %></p>
   <% end %>

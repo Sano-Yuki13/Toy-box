@@ -9,3 +9,7 @@ body {
 .pagination {
   justify-content: center;
 }
+
+a:hover {
+   opacity: 0.50; /* 50％ほど透明にする */
+}

@@ -20,6 +20,7 @@ class FavoritesController < ApplicationController
 
   def show
     @favorite = Favorite.find(params[:id])
+    @favorite_comments = @favorite.favorite_comments.page(params[:page]).per(5)
     @favorite_comment = FavoriteComment.new
   end
 
